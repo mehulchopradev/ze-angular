@@ -8,6 +8,8 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { TodosComponent } from './todos/todos.component';
 import { LibraryComponent } from './library/library.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LiveCalcResultsComponent } from './live-calc-results/live-calc-results.component';
+import { TitlePipe } from './title.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     CalculatorComponent,
     TodosComponent,
     LibraryComponent,
-    NavbarComponent
+    NavbarComponent,
+    LiveCalcResultsComponent,
+    TitlePipe
   ],
   imports: [
     BrowserModule,

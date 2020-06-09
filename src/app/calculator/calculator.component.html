@@ -16,8 +16,11 @@
     <input type="text" placeholder="The ans" readonly [value]="ans">
 </div>
 <div class="row">
-    First No: {{ firstNo }}<br>
-    Operation: {{ operation }}<br>
-    Second No: {{ secondNo }}<br>
-    <span *ngIf="isAnsVisible">Ans: {{ ans }}</span>
+    <app-live-calc-results
+        [first]="firstNo"
+        [second]="secondNo"
+        [operation]="operation"
+        [ans]="ans"
+        [isAnsVisible]="isAnsVisible"
+    ></app-live-calc-results>
 </div>

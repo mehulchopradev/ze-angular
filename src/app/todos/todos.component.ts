@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Todo from './todo';
 
 @Component({
   selector: 'app-todos',
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  constructor() { }
+  todos: Todo[];
+  newTodo: string;
+  todosCount: number
+
+  constructor() {
+    this.todos = [];
+    this.todosCount = 0;
+  }
 
   ngOnInit() {
   }
 
+  onSave() {
+    const newTodo = this.newTodo;
+    this.todos.push(new Todo(newTodo));
+    this.newTodo = '';
+    this.todosCount++;
+  }
+
+  onClearCompletedTodos() {
+    this.todos = this.todos.filter((todo: Todo) => !todo.done);
+    this.todosCount = this.todos.length;
+  }
+
+  isClearDisabled() {
+    const doneTodos = this.todos.filter((todo: Todo) => todo.done);
+    return doneTodos.length == 0;
+  }
 }

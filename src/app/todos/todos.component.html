@@ -1,1 +1,14 @@
-<p>todos works!</p>
+<div class="row">
+    <input type="text" class="input-text" [(ngModel)]="newTodo" placeholder="Enter todo to save">
+    <button [disabled]="!newTodo" (click)="onSave()">Save</button>
+    ({{todosCount}})
+</div>
+<div class="row">
+    <div *ngFor="let todo of todos">
+        <input type="checkbox" [(ngModel)]="todo.done">{{todo.description | title:"abc"}}
+        ({{todo.createdDate | date:"dd/MM/yyyy"}})
+    </div>
+</div>
+<div class="row">
+    <button [disabled]="isClearDisabled()" (click)="onClearCompletedTodos()">Clear completed todos</button>
+</div>
