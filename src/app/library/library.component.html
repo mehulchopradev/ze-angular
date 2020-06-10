@@ -1,1 +1,9 @@
-<p>library works!</p>
+<div class="row">
+   <app-book-list></app-book-list> 
+</div>
+<div class="row" *ngIf="!isBookFormVisible">
+    <button (click)="onShowBookForm()">Add Book</button>
+</div>
+<div class="row" *ngIf="isBookFormVisible">
+   <app-book-form (onCancel)="onHideBookForm()"></app-book-form> 
+</div>

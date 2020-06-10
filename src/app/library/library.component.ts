@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryComponent implements OnInit {
 
-  constructor() { }
+  isBookFormVisible: boolean;
+
+  constructor() {
+    this.isBookFormVisible = false;
+  }
 
   ngOnInit() {
   }
 
+  onShowBookForm() {
+    this.isBookFormVisible = true;
+  }
+
+  onHideBookForm() {
+    this.isBookFormVisible = false;
+  }
 }
