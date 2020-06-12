@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../book';
 
 @Component({
   selector: 'app-library',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class LibraryComponent implements OnInit {
 
   isBookFormVisible: boolean;
+  newBook: Book;
 
   constructor() {
     this.isBookFormVisible = false;
@@ -22,5 +24,9 @@ export class LibraryComponent implements OnInit {
 
   onHideBookForm() {
     this.isBookFormVisible = false;
+  }
+
+  onBookAdded(book: Book) {
+    this.newBook = book;
   }
 }

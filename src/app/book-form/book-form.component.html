@@ -1,11 +1,19 @@
-<p>
-    <input type="text" placeholder="Title of the book">
-</p>
-<p>
-    <input type="number" placeholder="Price of the book">
-</p>
-<p>
-    <input type="number" placeholder="Pages of the book">
-</p>
-<button>Save</button>
-<a (click)="onCancelLink()">Cancel</a>
+<div class="success" *ngIf="showSuccess">
+    Book saved!
+</div>
+<div class="error" *ngIf="showError">
+    Error in saving the book
+</div>
+<form (ngSubmit)="onSave()">
+    <p>
+        <input type="text" name="title" [(ngModel)]="book.title" placeholder="Title of the book">
+    </p>
+    <p>
+        <input type="number" name="price" [(ngModel)]="book.price" placeholder="Price of the book">
+    </p>
+    <p>
+        <input type="number" name="pages" [(ngModel)]="book.pages" placeholder="Pages of the book">
+    </p>
+    <button type="submit">Save</button>
+    <a (click)="onCancelLink()">Cancel</a>
+</form>
