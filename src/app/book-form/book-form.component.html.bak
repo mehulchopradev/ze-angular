@@ -1,0 +1,36 @@
+<div class="success" *ngIf="showSuccess">
+    Book saved!
+</div>
+<div class="error" *ngIf="showError">
+    Error in saving the book
+</div>
+<form (ngSubmit)="onSave()" #bookForm="ngForm">
+    <p>
+        <input type="text"
+            required 
+            name="title"
+            [(ngModel)]="book.title"
+            #title="ngModel"
+            placeholder="Title of the book">
+    </p>
+    <div class="validation-error" *ngIf="!title.pristine && !title.valid">
+        Title is required
+    </div>
+    <p>
+        <input type="number" name="price" [(ngModel)]="book.price" placeholder="Price of the book">
+    </p>
+    <p>
+        <input
+            type="number"
+            required
+            name="pages"
+            [(ngModel)]="book.pages"
+            #pages="ngModel"
+            placeholder="Pages of the book">
+    </p>
+    <div class="validation-error" *ngIf="!pages.pristine && !pages.valid">
+        Pages is required
+    </div>
+    <button type="submit" [disabled]="!bookForm.form.valid">Save</button>
+    <a (click)="onCancelLink()">Cancel</a>
+</form>

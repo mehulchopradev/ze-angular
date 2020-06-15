@@ -6,12 +6,16 @@
         <tr>
             <th>Id</th>
             <th>Title</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let book of books">
             <td>{{book.id}}</td>
             <td>{{book.title}}</td>
+            <td>
+                <a routerLink="/library/details">Details</a>
+            </td>
         </tr>
     </tbody>
 </table>

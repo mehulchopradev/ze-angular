@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Book } from '../book';
 
 @Component({
@@ -9,6 +8,14 @@ import { Book } from '../book';
   styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent implements OnInit {
+
+  /* title: string;
+
+  price: number;
+
+  pages: number; */
+
+  book: Book;
 
   showSuccess: boolean;
   showError: boolean;
@@ -19,23 +26,12 @@ export class BookFormComponent implements OnInit {
   @Output()
   onSuccess: EventEmitter<Book>;
 
-  bookFormGroup: FormGroup;
-
-  constructor(public http: HttpClient, public fb: FormBuilder) {
+  constructor(public http: HttpClient) {
     this.onCancel = new EventEmitter<any>();
     this.onSuccess = new EventEmitter<Book>();
+    this.book = new Book();
     this.showSuccess = false;
     this.showError = false;
-    /* this.bookFormGroup = new FormGroup({
-        title: new FormControl(),
-        price: new FormControl(),
-        pages: new FormControl()
-    }) */
-    this.bookFormGroup = fb.group({
-        title: ['', Validators.required],
-        price: [''],
-        pages: ['', Validators.required]
-    });
   }
 
   ngOnInit() {
@@ -46,16 +42,16 @@ export class BookFormComponent implements OnInit {
   }
 
   onSave() {
-    const { bookFormGroup }  = this;
-    const book = bookFormGroup.value;
+    // const { title, price, pages } = this;
     this.showSuccess = false;
     this.showError = false;
 
+    const book = this.book;
     const data = { book };
     // console.log(JSON.stringify(data)); // tells us how the json data will look
 
     this.http.post('http://localhost:3000/books', data).subscribe((data: Book) => {
-      bookFormGroup.reset();
+      this.book = new Book();
       this.showSuccess = true;
 
       this.onSuccess.emit(data);
@@ -64,11 +60,4 @@ export class BookFormComponent implements OnInit {
     });
   }
 
-  get title() {
-      return this.bookFormGroup.get('title');
-  }
-
-  get pages() {
-      return this.bookFormGroup.get('pages');
-  }
 }

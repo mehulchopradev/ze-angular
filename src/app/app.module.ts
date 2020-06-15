@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,8 @@ import { LiveCalcResultsComponent } from './live-calc-results/live-calc-results.
 import { TitlePipe } from './title.pipe';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { LibraryIndexComponent } from './library-index/library-index.component';
+import { LibraryDetailsComponent } from './library-details/library-details.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,15 @@ import { BookListComponent } from './book-list/book-list.component';
     LiveCalcResultsComponent,
     TitlePipe,
     BookFormComponent,
-    BookListComponent
+    BookListComponent,
+    LibraryIndexComponent,
+    LibraryDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [],

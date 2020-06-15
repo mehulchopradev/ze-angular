@@ -1,0 +1,9 @@
+<div class="row">
+    <app-book-list [newBook]="newBook"></app-book-list> 
+ </div>
+ <div class="row" *ngIf="!isBookFormVisible">
+     <button (click)="onShowBookForm()">Add Book</button>
+ </div>
+ <div class="row" *ngIf="isBookFormVisible">
+    <app-book-form (onSuccess)="onBookAdded($event)" (onCancel)="onHideBookForm()"></app-book-form> 
+ </div>

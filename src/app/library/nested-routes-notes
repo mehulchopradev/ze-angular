@@ -1,0 +1,2 @@
+app.component -> /library ->  library.component -> /library/details -> library-details.component
+app.component -> /library -> library.component -> /library/index -> library-index.component

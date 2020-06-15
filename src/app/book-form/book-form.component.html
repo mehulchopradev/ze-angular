@@ -4,16 +4,34 @@
 <div class="error" *ngIf="showError">
     Error in saving the book
 </div>
-<form (ngSubmit)="onSave()">
+<form [formGroup]="bookFormGroup" (ngSubmit)="onSave()">
     <p>
-        <input type="text" name="title" [(ngModel)]="book.title" placeholder="Title of the book">
+        <input type="text"
+            name="title"
+            required
+            placeholder="Title of the book"
+            formControlName="title">
+    </p>
+    <div class="validation-error" *ngIf="title.dirty && !title.valid">
+        Title is required
+    </div>
+    <p>
+        <input type="number"
+            name="price"
+            placeholder="Price of the book"
+            formControlName="price">
     </p>
     <p>
-        <input type="number" name="price" [(ngModel)]="book.price" placeholder="Price of the book">
+        <input
+            type="number"
+            name="pages"
+            required
+            placeholder="Pages of the book"
+            formControlName="pages">
     </p>
-    <p>
-        <input type="number" name="pages" [(ngModel)]="book.pages" placeholder="Pages of the book">
-    </p>
-    <button type="submit">Save</button>
+    <div class="validation-error" *ngIf="pages.dirty && !pages.valid">
+        Pages is required
+    </div>
+    <button type="submit" [disabled]="!bookFormGroup.valid">Save</button>
     <a (click)="onCancelLink()">Cancel</a>
 </form>
