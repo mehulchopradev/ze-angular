@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'todos', component: TodosComponent },
   { path: 'library', component: LibraryComponent, children: [
     { path: 'index', component: LibraryIndexComponent },
-    { path: 'details', component: LibraryDetailsComponent }
+    { path: 'details/:bookId', component: LibraryDetailsComponent }
   ]}
 ];
 

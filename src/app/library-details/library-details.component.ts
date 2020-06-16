@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-library-details',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryDetailsComponent implements OnInit {
 
-  constructor() { }
+  book: any
+  bookLoaded: boolean
+
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
+    this.book = {};
+    this.bookLoaded = false;
+  }
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      const { bookId } = params;
+      this.http.get(`http://localhost:3000/books/${bookId}`).subscribe((data: any) => {
+        const { books } = data;
+        this.bookLoaded = true;
+        this.book = books;
+      });
+    });
   }
 
 }
