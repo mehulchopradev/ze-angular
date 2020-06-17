@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Book } from '../book';
+import { BooksService } from '../books.service';
 
 @Component({
   selector: 'app-book-form',
@@ -21,7 +22,7 @@ export class BookFormComponent implements OnInit {
 
   bookFormGroup: FormGroup;
 
-  constructor(public http: HttpClient, public fb: FormBuilder) {
+  constructor(public http: HttpClient, public fb: FormBuilder, private bookService: BooksService) {
     this.onCancel = new EventEmitter<any>();
     this.onSuccess = new EventEmitter<Book>();
     this.showSuccess = false;
@@ -45,13 +46,26 @@ export class BookFormComponent implements OnInit {
     this.onCancel.emit();
   }
 
-  onSave() {
+  async onSave() {
     const { bookFormGroup }  = this;
     const book = bookFormGroup.value;
     this.showSuccess = false;
     this.showError = false;
 
-    const data = { book };
+    let data: Book;
+    try {
+      data = await this.bookService.saveBook(book);
+    } catch (err) {
+      this.showError = true;
+      return;
+    }
+
+    bookFormGroup.reset();
+    this.showSuccess = true;
+
+    this.onSuccess.emit(data);
+
+    /* const data = { book };
     // console.log(JSON.stringify(data)); // tells us how the json data will look
 
     this.http.post('http://localhost:3000/books', data).subscribe((data: Book) => {
@@ -61,7 +75,7 @@ export class BookFormComponent implements OnInit {
       this.onSuccess.emit(data);
     }, (err) => {
       this.showError = true;
-    });
+    }); */
   }
 
   get title() {

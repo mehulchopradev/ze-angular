@@ -15,6 +15,7 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { LibraryIndexComponent } from './library-index/library-index.component';
 import { LibraryDetailsComponent } from './library-details/library-details.component';
+import { BooksService } from './books.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { LibraryDetailsComponent } from './library-details/library-details.compo
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

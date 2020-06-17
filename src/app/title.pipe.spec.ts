@@ -1,8 +1,33 @@
 import { TitlePipe } from './title.pipe';
 
 describe('TitlePipe', () => {
-  it('create an instance', () => {
-    const pipe = new TitlePipe();
-    expect(pipe).toBeTruthy();
+  const scenarios = [
+    {
+      id: '1a',
+      input: 'go for bath',
+      output: 'Go for bath',
+    },
+    {
+      id: '1b',
+      input: 'swimming',
+      output: 'Swimming',
+    },
+    {
+      id: '2a',
+      input: '',
+      output: '',
+    },
+  ];
+  
+  let pipe;
+  beforeAll(() => {
+    pipe = new TitlePipe();
+  });
+
+  scenarios.forEach((scenario) => {
+    it(`${scenario.id} - ${scenario.input}`, () => {
+      const actual = pipe.transform(scenario.input);
+      expect(actual).toBe(scenario.output);
+    });
   });
 });

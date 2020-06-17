@@ -1,19 +1,19 @@
 <div class="row">
-    <input type="text" placeholder="Enter 1st No"
+    <input type="text" class="at-first" placeholder="Enter 1st No"
         [ngModel]="firstNo" (ngModelChange)="onFirstNoChange($event)">
-    <select [(ngModel)]="operation">
+    <select [(ngModel)]="operation" class="at-ops">
         <option>+</option>
         <option>-</option>
         <option>*</option>
     </select>
-    <input type="text" placeholder="Enter 2nd No"
+    <input type="text" class="at-second" placeholder="Enter 2nd No"
         [ngModel]="secondNo" (ngModelChange)="onSecondNoChange($event)">
 </div>
 <div class="row">
     <button (click)="onCalculate()" [disabled]="isDisabled">Calculatate</button>
 </div>
 <div class="row">
-    <input type="text" placeholder="The ans" readonly [value]="ans">
+    <input type="text" class="at-ans" placeholder="The ans" readonly [value]="ans">
 </div>
 <div class="row">
     <app-live-calc-results
